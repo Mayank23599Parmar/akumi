@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 import './index.css';
 
 /* ─────────────────────────────
@@ -23,10 +25,10 @@ const U = {
   hero_man:      'https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=1400&q=85&auto=format&fit=crop',
   hero_woman:    'https://images.unsplash.com/photo-1594381898411-846e7d193883?w=1400&q=85&auto=format&fit=crop',
   man_running:   'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&q=80&auto=format&fit=crop',
-  man_lifestyle: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80&auto=format&fit=crop',
-  woman_sport:   'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=80&auto=format&fit=crop',
+  man_lifestyle: process.env.PUBLIC_URL + '/images/hero/1_amuk.png',
+  woman_sport:   process.env.PUBLIC_URL + '/images/hero/2_amuk.png',
   woman_casual:  'https://images.unsplash.com/photo-1564218419776-9e1c9d2afcf4?w=800&q=80&auto=format&fit=crop',
-  cotton_field:  'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=1400&q=85&auto=format&fit=crop',
+  cotton_field:  process.env.PUBLIC_URL + '/images/sustainability.jpeg',
   ocean_wave:    'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1400&q=85&auto=format&fit=crop',
   california:    'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1400&q=85&auto=format&fit=crop',
   gym_lifestyle: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80&auto=format&fit=crop',
@@ -98,6 +100,22 @@ const Icons = {
   Star: ({ size = 14, filled = true }) => (
     <svg width={size} height={size} fill={filled ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+    </svg>
+  ),
+  StarHalf: ({ size = 14 }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true">
+      <defs>
+        <linearGradient id="halfGrad">
+          <stop offset="50%" stopColor="currentColor" />
+          <stop offset="50%" stopColor="transparent" stopOpacity="1" />
+        </linearGradient>
+      </defs>
+      <polygon fill="url(#halfGrad)" stroke="currentColor" strokeWidth="1.5" points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+    </svg>
+  ),
+  Heart: ({ size = 18 }) => (
+    <svg width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
     </svg>
   ),
   Plus: ({ size = 16 }) => (
@@ -407,82 +425,170 @@ const products = [
     name: 'Essential Logo Tee',
     cat: "Men's",
     price: '$52',
+    comparePrice: '$65',
     img: BRAND.tee_front,
     alt: 'Akumi Essential Logo Tee — charcoal black',
     colors: ['#2C2C2C', '#F8F7F4', '#4A5568'],
     badge: 'new',
+    rating: 4.9,
+    reviews: 124,
   },
   {
     name: 'Cargo Short',
     cat: "Men's",
     price: '$64',
+    comparePrice: '$78',
     img: BRAND.set_front,
     alt: 'Akumi Cargo Short with drawstring',
     colors: ['#2C2C2C', '#4A5568'],
     badge: null,
+    rating: 4.5,
+    reviews: 89,
   },
   {
     name: 'Back Logo Tee',
     cat: "Men's",
     price: '$52',
+    comparePrice: '$65',
     img: BRAND.set_back,
     alt: 'Akumi Back Logo Tee — oversized print',
     colors: ['#2C2C2C'],
     badge: 'best',
+    rating: 5.0,
+    reviews: 210,
   },
   {
     name: 'White Logo Tee',
     cat: "Men's & Women's",
     price: '$52',
+    comparePrice: null,
     img: BRAND.tee_white,
     alt: 'Akumi White Logo Tee — clean essential',
     colors: ['#F8F7F4', '#2C2C2C'],
     badge: null,
+    rating: 4.5,
+    reviews: 56,
+  },
+  {
+    name: 'Everyday Jogger',
+    cat: "Men's",
+    price: '$88',
+    comparePrice: '$110',
+    img: BRAND.jogger_pocket,
+    alt: 'Akumi Everyday Jogger pocket detail',
+    colors: ['#2C2C2C', '#4A5568'],
+    badge: 'new',
+    rating: 4.9,
+    reviews: 142,
+  },
+  {
+    name: 'Premium Hem Tee',
+    cat: "Men's & Women's",
+    price: '$58',
+    comparePrice: null,
+    img: BRAND.detail_hem,
+    alt: 'Akumi Premium Hem detail',
+    colors: ['#F8F7F4', '#2C2C2C', '#D1C8B4'],
+    badge: null,
+    rating: 4.5,
+    reviews: 73,
   },
 ];
 
-const FeaturedProducts = () => {
-  const ref = useFadeUp();
+const StarRating = ({ rating, count }) => {
+  const stars = [];
+  for (let i = 1; i <= 5; i++) {
+    if (rating >= i) {
+      stars.push(<Icons.Star key={i} size={12} filled={true} />);
+    } else if (rating >= i - 0.5) {
+      stars.push(<Icons.StarHalf key={i} size={12} />);
+    } else {
+      stars.push(<Icons.Star key={i} size={12} filled={false} />);
+    }
+  }
   return (
-    <section className="ak-products fade-up" id="men" ref={ref}>
+    <div className="ak-prod-reviews" aria-label={`${rating} out of 5 stars from ${count} reviews`}>
+      <div className="ak-stars">{stars}</div>
+      <span>{rating} ({count})</span>
+    </div>
+  );
+};
+
+const ProductCarouselSection = ({ title, eyebrow }) => {
+  const ref = useFadeUp();
+  const slides = useMemo(() => {
+    const duplicated = [...products, ...products, ...products]; // Triple the items to ensure plenty of scrolling
+    return duplicated.sort(() => 0.5 - Math.random());
+  }, []);
+
+  return (
+    <section className="ak-products fade-up" ref={ref}>
       <div className="ak-section-header container">
         <div>
-          <p className="ak-section-eyebrow">New Arrivals</p>
-          <h2 className="ak-section-title">Essentials, Elevated</h2>
+          {eyebrow && <p className="ak-section-eyebrow">{eyebrow}</p>}
+          <h2 className="ak-section-title">{title}</h2>
         </div>
-        <a href="#collections" className="ak-view-all" id="view-all-products">
+        <a href="#collections" className="ak-view-all">
           View All <Icons.ArrowRight size={13} />
         </a>
       </div>
-      <div className="ak-prod-grid container">
-        {products.map((p, i) => (
-          <article className="ak-prod-card" key={i} id={`product-card-${i + 1}`}>
-            <div className="ak-prod-img">
-              {p.badge === 'new'  && <span className="ak-prod-badge new">New</span>}
-              {p.badge === 'best' && <span className="ak-prod-badge best">Best Seller</span>}
-              <img src={p.img} alt={p.alt} loading="lazy" />
-              <div className="ak-prod-img-overlay" />
-              <button className="ak-prod-quick" aria-label={`Quick add ${p.name}`}>
-                <Icons.Plus size={14} /> Quick Add
-              </button>
-            </div>
-            <p className="ak-prod-cat">{p.cat}</p>
-            <p className="ak-prod-name">{p.name}</p>
-            <p className="ak-prod-price">{p.price}</p>
-            <div className="ak-prod-swatches" role="group" aria-label="Available colors">
-              {p.colors.map((c, ci) => (
-                <button
-                  key={ci}
-                  className="ak-swatch"
-                  style={{ background: c }}
-                  aria-label={`Color option ${ci + 1}`}
-                />
-              ))}
-            </div>
-          </article>
-        ))}
+      <div className="ak-prod-carousel">
+        <Swiper
+          slidesPerView="auto"
+          spaceBetween={24}
+          grabCursor={true}
+          className="ak-swiper-container"
+        >
+          {slides.map((p, i) => (
+            <SwiperSlide key={i} className="ak-swiper-slide">
+              <article className="ak-prod-card" id={`product-card-${title.replace(/\\s+/g, '-')}-${i}`}>
+                <div className="ak-prod-img">
+                  {p.badge === 'new'  && <span className="ak-prod-badge new">New</span>}
+                  {p.badge === 'best' && <span className="ak-prod-badge best">Best Seller</span>}
+                  <button className="ak-wishlist-btn" aria-label="Add to wishlist">
+                    <Icons.Heart size={18} />
+                  </button>
+                  <img src={p.img} alt={p.alt} loading="lazy" />
+                  <div className="ak-prod-img-overlay" />
+                  <button className="ak-prod-quick" aria-label={`Quick add ${p.name}`}>
+                    <Icons.Plus size={14} /> Quick Add
+                  </button>
+                </div>
+                <div className="ak-prod-info">
+                  <p className="ak-prod-cat">{p.cat}</p>
+                  <p className="ak-prod-name">{p.name}</p>
+                  <StarRating rating={p.rating} count={p.reviews} />
+                  <div className="ak-prod-price-row">
+                    <span className="ak-prod-price">{p.price}</span>
+                    {p.comparePrice && <span className="ak-prod-compare">{p.comparePrice}</span>}
+                  </div>
+                  <div className="ak-prod-swatches" role="group" aria-label="Available colors">
+                    {p.colors.map((c, ci) => (
+                      <button
+                        key={ci}
+                        className="ak-swatch"
+                        style={{ background: c }}
+                        aria-label={`Color option ${ci + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </article>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </section>
+  );
+};
+
+const FeaturedProducts = () => {
+  return (
+    <div id="men">
+      <ProductCarouselSection title="Shop New Arrivals" eyebrow="Just Dropped" />
+      <ProductCarouselSection title="Popular Categories" eyebrow="Trending Now" />
+      <ProductCarouselSection title="Recommended For You" eyebrow="Curated Fits" />
+    </div>
   );
 };
 
@@ -580,17 +686,17 @@ const Collections = () => {
         <div className="ak-col-card" id="mens-collection" tabIndex="0">
           <img src={U.man_lifestyle} alt="Men wearing Akumi activewear" loading="lazy" className="ak-fill-img" />
           <div className="ak-col-overlay">
-            <p className="ak-col-super">Explore</p>
-            <h3 className="ak-col-name">Men's Line</h3>
-            <a href="#men" className="ak-col-link">Shop Men's <Icons.ArrowRight size={13} /></a>
+            <p className="ak-col-super">MENSWEAR</p>
+            <h3 className="ak-col-name">The perfect everyday essentials</h3>
+            <a href="#men" className="ak-col-btn">Shop Men's <Icons.ArrowRight size={14} /></a>
           </div>
         </div>
         <div className="ak-col-card" id="womens-collection" tabIndex="0">
-          <img src={U.woman_sport} alt="Woman wearing Akumi activewear" loading="lazy" className="ak-fill-img" />
+          <img src={process.env.PUBLIC_URL + '/images/women_line.jpeg'} alt="Woman wearing Akumi activewear" loading="lazy" className="ak-fill-img" />
           <div className="ak-col-overlay">
-            <p className="ak-col-super">Explore</p>
-            <h3 className="ak-col-name" id="women">Women's Line</h3>
-            <a href="#women" className="ak-col-link">Shop Women's <Icons.ArrowRight size={13} /></a>
+            <p className="ak-col-super">WOMENSWEAR</p>
+            <h3 className="ak-col-name" id="women">Effortless style and comfort</h3>
+            <a href="#women" className="ak-col-btn">Shop Women's <Icons.ArrowRight size={14} /></a>
           </div>
         </div>
       </div>

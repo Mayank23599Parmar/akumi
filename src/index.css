@@ -170,7 +170,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 ══════════════════════════ */
 .ak-hero {
   display: grid; grid-template-columns: 55% 45%;
-  height: 80vh; min-height: 550px; max-height: 800px;
+  height: calc(100vh - 115px);
+  min-height: 550px;
   overflow: hidden;
 }
 .ak-hero-left { position: relative; overflow: hidden; background: var(--ak-off-white); }
@@ -426,8 +427,40 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transition: all var(--t-fast);
 }
 .ak-view-all:hover { opacity: 0.6; }
-.ak-prod-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+.ak-tabs {
+  display: flex; gap: 2rem; overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+.ak-tabs::-webkit-scrollbar { display: none; } /* Chrome */
+.ak-tab-btn {
+  font-family: inherit;
+  font-size: 1.15rem; font-weight: 800; color: var(--ak-muted);
+  background: none; border: none; cursor: pointer;
+  padding: 0 0 0.5rem 0; position: relative;
+  transition: color var(--t-fast); white-space: nowrap;
+}
+.ak-tab-btn.active { color: var(--ak-charcoal); }
+.ak-tab-btn.active::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 2px; background: var(--ak-charcoal);
+}
+.ak-tab-btn:hover { color: var(--ak-charcoal); }
+
+.ak-prod-carousel {
+  width: 100%;
+}
+.ak-swiper-container {
+  overflow: visible !important;
+  padding-bottom: 2rem; /* space for quick add hover */
+  padding-left: max(2rem, calc((100vw - 1320px) / 2));
+  padding-right: max(2rem, calc((100vw - 1320px) / 2));
+}
+.ak-swiper-container .swiper-wrapper {
+  display: flex;
+}
+.ak-swiper-slide {
+  width: 280px !important;
+  flex-shrink: 0;
 }
 .ak-prod-card { cursor: pointer; }
 .ak-prod-img {
@@ -450,11 +483,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .ak-prod-card:hover .ak-prod-img-overlay { background: rgba(26,26,26,0.04); }
 .ak-prod-badge {
   position: absolute; top: 0.8rem; left: 0.8rem; z-index: 2;
-  padding: 0.28rem 0.7rem;
-  font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 800;
+  padding: 0.35rem 0.85rem; border-radius: 20px;
+  font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 800;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); backdrop-filter: blur(4px);
 }
 .ak-prod-badge.new { background: var(--ak-amber); color: var(--ak-charcoal); }
-.ak-prod-badge.best { background: var(--ak-charcoal); color: #fff; }
+.ak-prod-badge.best { background: rgba(26,26,26,0.9); color: #fff; }
+.ak-wishlist-btn {
+  position: absolute; top: 0.8rem; right: 0.8rem; z-index: 2;
+  background: #fff; border: none; border-radius: 50%;
+  width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--ak-charcoal);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform var(--t-fast);
+}
+.ak-wishlist-btn:hover { transform: scale(1.1); color: var(--ak-amber); }
 .ak-prod-quick {
   position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
   display: flex; align-items: center; justify-content: center; gap: 0.5rem;
@@ -466,11 +508,19 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .ak-prod-card:hover .ak-prod-quick { transform: translateY(0); }
 .ak-prod-cat {
-  font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase;
+  font-size: 0.65rem; letter-spacing: 0.08em; text-transform: capitalize;
   font-weight: 600; color: var(--ak-muted); margin-bottom: 0.25rem;
 }
 .ak-prod-name { font-size: 0.9rem; font-weight: 700; color: var(--ak-charcoal); margin-bottom: 0.3rem; }
-.ak-prod-price { font-size: 0.92rem; font-weight: 800; color: var(--ak-charcoal); margin-bottom: 0.7rem; }
+.ak-prod-reviews {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.75rem; color: var(--ak-charcoal); font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.ak-stars { display: flex; color: var(--ak-amber); }
+.ak-prod-price-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.7rem; }
+.ak-prod-price { font-size: 0.92rem; font-weight: 800; color: var(--ak-charcoal); margin-bottom: 0; }
+.ak-prod-compare { font-size: 0.82rem; font-weight: 600; color: var(--ak-muted); text-decoration: line-through; }
 .ak-prod-swatches { display: flex; gap: 0.4rem; }
 .ak-swatch {
   width: 18px; height: 18px; border-radius: 50%;
@@ -578,26 +628,26 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .ak-col-card:hover img { transform: scale(1.05); }
 .ak-col-overlay {
-  position: absolute; bottom: 0; left: 0; right: 0; padding: 3rem;
-  background: linear-gradient(0deg, rgba(26,26,26,0.88) 0%, rgba(26,26,26,0.25) 60%, transparent 100%);
+  position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem;
+  background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
   color: #fff;
+  display: flex; flex-direction: column; align-items: flex-start;
 }
 .ak-col-super {
-  font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase;
-  font-weight: 700; color: rgba(255,255,255,0.5); margin-bottom: 0.5rem;
+  font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+  font-weight: 700; margin-bottom: 0.4rem;
 }
 .ak-col-name {
-  font-family: var(--font-display); font-size: 2.8rem; font-weight: 800;
-  line-height: 1; margin-bottom: 1.2rem; letter-spacing: -0.02em;
+  font-family: inherit; font-size: 2rem; font-weight: 800;
+  line-height: 1.1; margin-bottom: 1.25rem; letter-spacing: -0.01em; max-width: 80%;
 }
-.ak-col-link {
+.ak-col-btn {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
-  font-weight: 800; color: #fff;
-  border-bottom: 1.5px solid rgba(255,255,255,0.4); padding-bottom: 2px;
-  transition: border-color var(--t-fast);
+  font-size: 0.85rem; letter-spacing: 0.05em; font-weight: 700;
+  color: #000; background: #fff; padding: 0.75rem 1.25rem;
+  border-radius: 4px; transition: opacity var(--t-fast);
 }
-.ak-col-link:hover { border-color: #fff; }
+.ak-col-btn:hover { opacity: 0.85; }
 
 /* ══════════════════════════
    REVIEWS — dual marquee
@@ -810,7 +860,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    RESPONSIVE
 ══════════════════════════ */
 @media (max-width: 1100px) {
-  .ak-prod-grid { grid-template-columns: repeat(2, 1fr); }
+  .ak-swiper-slide { width: 220px !important; }
   .ak-footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
   .ak-brand-strip-inner { grid-template-columns: 1fr 1fr; }
   .ak-strip-item.ak-strip-tall { display: none; }
@@ -839,7 +889,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 @media (max-width: 600px) {
-  .ak-prod-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .ak-tabs { gap: 1.25rem; }
+  .ak-tab-btn { font-size: 1rem; }
+  .ak-swiper-slide { width: 75vw !important; max-width: 260px; }
   .ak-insta-grid { grid-template-columns: repeat(2, 1fr); }
   .ak-newsletter-form { flex-direction: column; }
   .ak-newsletter-input { border-right: 1.5px solid rgba(255,255,255,0.15); }
