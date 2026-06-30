@@ -420,20 +420,24 @@ const StoryIntro = () => {
 /* ═══════════════════════════════════════
    FEATURED PRODUCTS — brand product images
 ═══════════════════════════════════════ */
-/* Image cycle: p1 → p2 → p3 → p1 → p2 → p3 */
-const P = (n) => ({
+/* Image helpers */
+const Pm = (n) => ({
   front: process.env.PUBLIC_URL + `/images/products/p${n}-m-front.png`,
-  back:  process.env.PUBLIC_URL + `/images/products/p${n}-m-back.png`,
+  back: process.env.PUBLIC_URL + `/images/products/p${n}-m-back.png`,
+});
+const Pf = (n) => ({
+  front: process.env.PUBLIC_URL + `/images/products/p${n}-f-front.png`,
+  back: process.env.PUBLIC_URL + `/images/products/p${n}-f-back.png`,
 });
 
-const products = [
+const maleProducts = [
   {
     name: 'Essential Logo Tee',
     cat: "Men's",
     price: '$52',
     comparePrice: '$65',
-    img: P(1).front,
-    imgHover: P(1).back,
+    img: Pm(1).front,
+    imgHover: Pm(1).back,
     alt: 'Akumi Essential Logo Tee — front',
     colors: ['#2C2C2C', '#F8F7F4', '#4A5568'],
     badge: 'new',
@@ -445,8 +449,8 @@ const products = [
     cat: "Men's",
     price: '$64',
     comparePrice: '$78',
-    img: P(2).front,
-    imgHover: P(2).back,
+    img: Pm(2).front,
+    imgHover: Pm(2).back,
     alt: 'Akumi Cargo Short — front',
     colors: ['#2C2C2C', '#4A5568'],
     badge: null,
@@ -458,54 +462,60 @@ const products = [
     cat: "Men's",
     price: '$52',
     comparePrice: '$65',
-    img: P(3).front,
-    imgHover: P(3).back,
+    img: Pm(3).front,
+    imgHover: Pm(3).back,
     alt: 'Akumi Back Logo Tee — front',
     colors: ['#2C2C2C'],
     badge: 'best',
     rating: 5.0,
     reviews: 210,
   },
+];
+
+const femaleProducts = [
   {
-    name: 'White Logo Tee',
-    cat: "Men's & Women's",
-    price: '$52',
-    comparePrice: null,
-    img: P(1).front,
-    imgHover: P(1).back,
-    alt: 'Akumi White Logo Tee — front',
-    colors: ['#F8F7F4', '#2C2C2C'],
-    badge: null,
-    rating: 4.5,
-    reviews: 56,
-  },
-  {
-    name: 'Everyday Jogger',
-    cat: "Men's",
-    price: '$88',
-    comparePrice: '$110',
-    img: P(2).front,
-    imgHover: P(2).back,
-    alt: 'Akumi Everyday Jogger — front',
-    colors: ['#2C2C2C', '#4A5568'],
+    name: 'Logo Crop Tee',
+    cat: "Women's",
+    price: '$48',
+    comparePrice: '$60',
+    img: Pf(1).front,
+    imgHover: Pf(1).back,
+    alt: 'Akumi Logo Crop Tee — front',
+    colors: ['#F8F7F4', '#2C2C2C', '#4A5568'],
     badge: 'new',
-    rating: 4.9,
-    reviews: 142,
+    rating: 4.8,
+    reviews: 98,
   },
   {
-    name: 'Premium Hem Tee',
-    cat: "Men's",
-    price: '$58',
-    comparePrice: '$72',
-    img: P(3).front,
-    imgHover: P(3).back,
-    alt: 'Akumi Premium Hem Tee — front',
-    colors: ['#2C2C2C', '#4A5568'],
+    name: 'Relaxed Tee',
+    cat: "Women's",
+    price: '$52',
+    comparePrice: '$65',
+    img: Pf(2).front,
+    imgHover: Pf(2).back,
+    alt: 'Akumi Relaxed Tee — front',
+    colors: ['#F8F7F4', '#4A5568'],
     badge: null,
-    rating: 4.8,
-    reviews: 76,
+    rating: 4.6,
+    reviews: 74,
+  },
+  {
+    name: 'Essential Tee',
+    cat: "Women's",
+    price: '$48',
+    comparePrice: null,
+    img: Pf(3).front,
+    imgHover: Pf(3).back,
+    alt: 'Akumi Essential Tee — front',
+    colors: ['#2C2C2C', '#F8F7F4'],
+    badge: 'best',
+    rating: 4.9,
+    reviews: 157,
   },
 ];
+
+// Combined list used by the Quick Add modal and other references
+const products = [...maleProducts, ...femaleProducts];
 
 const StarRating = ({ rating, count }) => {
   const stars = [];
@@ -526,13 +536,15 @@ const StarRating = ({ rating, count }) => {
   );
 };
 
-const ProductCarouselSection = ({ title, eyebrow, startAt = 0 }) => {
+const ProductCarouselSection = ({ title, eyebrow, slidePattern = 'mfm', setQuickAddProduct }) => {
   const ref = useFadeUp();
   const slides = useMemo(() => {
-    // Rotate so each slider starts at the requested product, then repeat
-    const base = [...products.slice(startAt), ...products.slice(0, startAt)];
-    return [...base, ...base, ...base];
-  }, [startAt]);
+    // mfm: 3 male + 3 female + 3 male  |  fmf: 3 female + 3 male + 3 female
+    const block1 = slidePattern === 'fmf' ? femaleProducts : maleProducts;
+    const block2 = slidePattern === 'fmf' ? maleProducts : femaleProducts;
+    const block3 = slidePattern === 'fmf' ? femaleProducts : maleProducts;
+    return [...block1, ...block2, ...block3];
+  }, [slidePattern]);
 
   return (
     <section className="ak-products fade-up" ref={ref}>
@@ -564,7 +576,7 @@ const ProductCarouselSection = ({ title, eyebrow, startAt = 0 }) => {
                   <img src={p.img} alt={p.alt} loading="lazy" className="ak-img-primary" />
                   {p.imgHover && <img src={p.imgHover} alt={`${p.alt} back`} loading="lazy" className="ak-img-hover" />}
                   <div className="ak-prod-img-overlay" />
-                  <button className="ak-prod-quick" aria-label={`Quick add ${p.name}`}>
+                  <button className="ak-prod-quick" aria-label={`Quick add ${p.name}`} onClick={() => setQuickAddProduct && setQuickAddProduct(p)}>
                     <Icons.Plus size={14} /> Quick Add
                   </button>
                 </div>
@@ -596,12 +608,140 @@ const ProductCarouselSection = ({ title, eyebrow, startAt = 0 }) => {
   );
 };
 
-const FeaturedProducts = () => {
+const FeaturedProducts = ({ setQuickAddProduct }) => {
   return (
     <div id="men">
-      <ProductCarouselSection title="Shop New Arrivals" eyebrow="Just Dropped" startAt={0} />
-      <ProductCarouselSection title="Popular Categories" eyebrow="Trending Now" startAt={1} />
-      <ProductCarouselSection title="Recommended For You" eyebrow="Curated Fits" startAt={2} />
+      <ProductCarouselSection title="Shop New Arrivals" eyebrow="Just Dropped" slidePattern="mfm" setQuickAddProduct={setQuickAddProduct} />
+      <ProductCarouselSection title="Popular Categories" eyebrow="Trending Now" slidePattern="fmf" setQuickAddProduct={setQuickAddProduct} />
+      <ProductCarouselSection title="Recommended For You" eyebrow="Curated Fits" slidePattern="mfm" setQuickAddProduct={setQuickAddProduct} />
+    </div>
+  );
+};
+
+/* ═══════════════════════════════════════
+   QUICK ADD MODAL
+═══════════════════════════════════════ */
+const QuickAddModal = ({ product, onClose }) => {
+  const [selectedColor, setSelectedColor] = useState(0);
+  const [selectedSize, setSelectedSize] = useState('M');
+  const [imgIndex, setImgIndex] = useState(0);
+
+  // Sync selected color to image index whenever image changes
+  useEffect(() => {
+    setSelectedColor(Math.floor(imgIndex / 2));
+  }, [imgIndex]);
+
+  if (!product) return null;
+
+  // The 6 images
+  const modalImages = [
+    process.env.PUBLIC_URL + '/images/products/p1-m-front.png',
+    process.env.PUBLIC_URL + '/images/products/p1-m-back.png',
+    process.env.PUBLIC_URL + '/images/products/p2-m-front.png',
+    process.env.PUBLIC_URL + '/images/products/p2-m-back.png',
+    process.env.PUBLIC_URL + '/images/products/p3-m-front.png',
+    process.env.PUBLIC_URL + '/images/products/p3-m-back.png',
+  ];
+
+  const colors = [
+    { name: 'White', hex: '#F5F4F1' },
+    { name: 'Black', hex: '#1A1A1A' },
+    { name: 'Blue', hex: '#3B5E8C' },
+  ];
+
+  const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+
+  const prevImg = (e) => { e.stopPropagation(); setImgIndex(i => (i - 1 + modalImages.length) % modalImages.length); };
+  const nextImg = (e) => { e.stopPropagation(); setImgIndex(i => (i + 1) % modalImages.length); };
+
+  return (
+    <div className="ak-qa-backdrop" onClick={onClose}>
+      <div className="ak-qa-modal" onClick={e => e.stopPropagation()}>
+        <button className="ak-qa-close" onClick={onClose} aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+
+        <div className="ak-qa-layout">
+          {/* LEFT: image slider */}
+          <div className="ak-qa-left">
+            <div className="ak-qa-img-wrap">
+              <img src={modalImages[imgIndex]} alt={`Product view ${imgIndex + 1}`} className="ak-qa-img" />
+              <button className="ak-qa-nav ak-qa-nav--prev" onClick={prevImg} aria-label="Previous">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6" /></svg>
+              </button>
+              <button className="ak-qa-nav ak-qa-nav--next" onClick={nextImg} aria-label="Next">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
+              </button>
+              <div className="ak-qa-dots">
+                {modalImages.map((_, i) => (
+                  <button key={i} className={`ak-qa-dot${i === imgIndex ? ' active' : ''}`} onClick={e => { e.stopPropagation(); setImgIndex(i); }} aria-label={`Image ${i + 1}`} />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT: product details */}
+          <div className="ak-qa-right">
+            <p className="ak-qa-meta">{product.cat}</p>
+            <h2 className="ak-qa-title">{product.name}</h2>
+            <div className="ak-qa-prices">
+              <span className="ak-qa-price">{product.price}</span>
+              {product.comparePrice && <span className="ak-qa-compare">{product.comparePrice}</span>}
+            </div>
+            <div className="ak-qa-stars-row">
+              <StarRating rating={product.rating} count={product.reviews} />
+            </div>
+
+            <div className="ak-qa-divider" />
+
+            <div className="ak-qa-section">
+              <div className="ak-qa-label">Colour — <span>{colors[selectedColor].name}</span></div>
+              <div className="ak-qa-colors">
+                {colors.map((c, i) => (
+                  <button
+                    key={i}
+                    className={`ak-qa-color-btn${selectedColor === i ? ' active' : ''}`}
+                    style={{ background: c.hex, borderColor: selectedColor === i ? '#000' : '#ddd' }}
+                    onClick={() => {
+                      setSelectedColor(i);
+                      setImgIndex(i * 2);
+                    }}
+                    aria-label={`Select ${c.name}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className="ak-qa-section">
+              <div className="ak-qa-label">Size — <span>{selectedSize}</span></div>
+              <div className="ak-qa-sizes">
+                {sizes.map(s => (
+                  <button key={s} className={`ak-qa-size-btn${selectedSize === s ? ' active' : ''}`} onClick={() => setSelectedSize(s)}>{s}</button>
+                ))}
+              </div>
+            </div>
+
+            <div className="ak-qa-features">
+              <div className="ak-qa-feature">
+                <Icons.Truck size={14} /> Free Shipping $75+
+              </div>
+              <div className="ak-qa-feature">
+                <Icons.Leaf size={14} /> 100% Recycled Cotton
+              </div>
+              <div className="ak-qa-feature">
+                <Icons.Return size={14} /> Easy Returns
+              </div>
+            </div>
+
+            <button className="ak-qa-add-btn">
+              Add to Cart — {product.price}
+            </button>
+            <img src="/images/payme.svg" alt="Payment Methods" style={{ height: '20px', marginLeft: '0.5rem' }} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -938,6 +1078,8 @@ const Footer = () => (
    APP ROOT
 ═══════════════════════════════════════ */
 export default function App() {
+  const [quickAddProduct, setQuickAddProduct] = useState(null);
+
   useEffect(() => {
     const els = document.querySelectorAll('.fade-up');
     const obs = new IntersectionObserver(
@@ -950,6 +1092,16 @@ export default function App() {
     return () => obs.disconnect();
   }, []);
 
+  // Prevent background scrolling when modal is open
+  useEffect(() => {
+    if (quickAddProduct) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => { document.body.style.overflow = 'auto'; };
+  }, [quickAddProduct]);
+
   return (
     <>
       <AnnouncementBar />
@@ -960,7 +1112,7 @@ export default function App() {
         <Ticker />
         <StoryIntro />
         <Collections />
-        <FeaturedProducts />
+        <FeaturedProducts setQuickAddProduct={setQuickAddProduct} />
         <SplitStory />
         <BrandStatement />
         <Reviews />
@@ -973,6 +1125,7 @@ export default function App() {
         </div>
       </div>
       <Footer />
+      <QuickAddModal product={quickAddProduct} onClose={() => setQuickAddProduct(null)} />
     </>
   );
 }
