@@ -1,18 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 
 /* ══════════════════════════════════════════
    AKUMI DESIGN SYSTEM
    Colors extracted from logo: Charcoal · Amber · Lime · Cyan
 ══════════════════════════════════════════ */
 :root {
-  --ak-black:       #1A1A1A;
-  --ak-charcoal:    #2B2B2B;
-  --ak-charcoal-2:  #3D3D3D;
-  --ak-charcoal-3:  #666;
-  --ak-off-white:   #F8F7F4;
-  --ak-cream:       #F2F0EC;
+  --ak-black:       #111111;
+  --ak-charcoal:    #1A1A1A;
+  --ak-charcoal-2:  #2B2B2B;
+  --ak-charcoal-3:  #666666;
+  --ak-off-white:   #F9F9F9;
+  --ak-cream:       #F2F2F2;
   --ak-white:       #FFFFFF;
-  --ak-divider:     #E5E3DF;
+  --ak-divider:     #E5E5E5;
   --ak-muted:       #9A9590;
   --ak-amber:       #F5A623;
   --ak-amber-dark:  #C77C00;
@@ -23,7 +23,7 @@
   --ak-gradient-h:  linear-gradient(90deg, #F5A623 0%, #8BC34A 50%, #4DD0E1 100%);
   --ak-gradient-text: linear-gradient(135deg, #F5A623 0%, #8BC34A 50%, #4DD0E1 100%);
   --font-body:      'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display:   'Playfair Display', Georgia, serif;
+  --font-display:   'Outfit', -apple-system, sans-serif;
   --ease:           cubic-bezier(0.4, 0, 0.2, 1);
   --ease-out:       cubic-bezier(0, 0, 0.2, 1);
   --t-fast:         0.18s;
@@ -222,35 +222,34 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .ak-hero-h1 {
   font-family: var(--font-display);
   font-size: clamp(3rem, 5.2vw, 5.5rem);
-  line-height: 1.0; font-weight: 900;
+  line-height: 1.05; font-weight: 800;
   color: var(--ak-charcoal); margin-bottom: 1.5rem;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.035em;
 }
 .ak-hero-sub {
-  font-size: 1rem; line-height: 1.82; color: var(--ak-charcoal-3);
-  max-width: 400px; margin-bottom: 2.5rem;
+  font-size: 1rem; line-height: 1.6; color: var(--ak-charcoal-3);
+  max-width: 400px; margin-bottom: 2.5rem; letter-spacing: 0.01em;
 }
 .ak-btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
 .ak-btn-primary {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  padding: 0.95rem 2rem; background: var(--ak-charcoal); color: #fff;
-  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
-  font-weight: 800; border: 2px solid var(--ak-charcoal);
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+  padding: 1.1rem 2.5rem; background: var(--ak-charcoal); color: #fff;
+  font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase;
+  font-weight: 700; border: 1px solid var(--ak-charcoal);
   transition: all var(--t-base) var(--ease);
 }
 .ak-btn-primary:hover {
-  background: transparent; color: var(--ak-charcoal);
-  transform: translateY(-2px); box-shadow: 0 8px 24px rgba(43,43,43,0.12);
+  background: var(--ak-off-white); color: var(--ak-charcoal);
 }
 .ak-btn-ghost {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  padding: 0.95rem 2rem; background: transparent;
-  color: var(--ak-charcoal); font-size: 0.72rem;
-  letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800;
-  border: 2px solid rgba(43,43,43,0.25);
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+  padding: 1.1rem 2.5rem; background: transparent;
+  color: var(--ak-charcoal); font-size: 0.75rem;
+  letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700;
+  border: 1px solid var(--ak-charcoal);
   transition: all var(--t-base) var(--ease);
 }
-.ak-btn-ghost:hover { border-color: var(--ak-charcoal); transform: translateY(-2px); }
+.ak-btn-ghost:hover { background: var(--ak-charcoal); color: #fff; }
 .ak-hero-stats {
   display: flex; gap: 2.5rem; margin-top: 3.5rem;
   padding-top: 2rem; border-top: 1px solid var(--ak-divider);
@@ -422,18 +421,18 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .ak-section-title {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 900;
-  color: var(--ak-charcoal); line-height: 1.05;
+  font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 800;
+  color: var(--ak-charcoal); line-height: 1.1; letter-spacing: -0.02em;
 }
 .ak-view-all {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
-  font-weight: 800; color: var(--ak-charcoal);
-  border-bottom: 2px solid var(--ak-charcoal); padding-bottom: 2px;
+  font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+  font-weight: 700; color: var(--ak-charcoal);
+  border-bottom: 1px solid var(--ak-charcoal); padding-bottom: 2px;
   white-space: nowrap; flex-shrink: 0;
   transition: all var(--t-fast);
 }
-.ak-view-all:hover { color: var(--ak-amber-dark); border-color: var(--ak-amber); }
+.ak-view-all:hover { opacity: 0.6; }
 .ak-prod-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
 }
@@ -515,8 +514,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .ak-split-h2 {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 3.8vw, 3.5rem); font-weight: 900;
-  line-height: 1.05; color: #fff; margin-bottom: 1.6rem;
+  font-size: clamp(2.2rem, 3.8vw, 3.5rem); font-weight: 800;
+  line-height: 1.1; color: #fff; margin-bottom: 1.6rem; letter-spacing: -0.02em;
 }
 .ak-split-body {
   font-size: 1rem; line-height: 1.88;
@@ -595,8 +594,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 700; color: rgba(255,255,255,0.5); margin-bottom: 0.5rem;
 }
 .ak-col-name {
-  font-family: var(--font-display); font-size: 2.4rem; font-weight: 900;
-  line-height: 1; margin-bottom: 1.2rem;
+  font-family: var(--font-display); font-size: 2.8rem; font-weight: 800;
+  line-height: 1; margin-bottom: 1.2rem; letter-spacing: -0.02em;
 }
 .ak-col-link {
   display: inline-flex; align-items: center; gap: 0.5rem;
@@ -616,8 +615,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .ak-reviews-header h2 {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3.8vw, 3rem); font-weight: 900;
-  color: var(--ak-charcoal); margin-top: 1rem;
+  font-size: clamp(2rem, 3.8vw, 3.4rem); font-weight: 800;
+  color: var(--ak-charcoal); margin-top: 1rem; letter-spacing: -0.02em;
 }
 .ak-reviews-header p { font-size: 0.95rem; color: var(--ak-muted); margin-top: 0.7rem; }
 .ak-reviews-marquee {
@@ -671,7 +670,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .ak-social-count {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.02em;
 }
 .ak-social-sub { font-size: 0.85rem; color: var(--ak-charcoal-3); margin-top: 0.3rem; }
 .ak-ig-link {
@@ -690,8 +689,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .ak-insta-header { text-align: center; padding: 0 2rem 3rem; }
 .ak-insta-header h2 {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 900;
-  color: var(--ak-charcoal); margin: 0.8rem 0 0.6rem;
+  font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800;
+  color: var(--ak-charcoal); margin: 0.8rem 0 0.6rem; letter-spacing: -0.02em;
 }
 .ak-insta-handle {
   display: inline-flex; align-items: center; gap: 0.5rem;
@@ -739,8 +738,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .ak-nl-h2 {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 900;
-  color: #fff; margin: 1rem 0 0.8rem;
+  font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 800;
+  color: #fff; margin: 1rem 0 0.8rem; letter-spacing: -0.03em;
 }
 .ak-nl-sub {
   font-size: 1rem; color: rgba(255,255,255,0.45); margin-bottom: 2.5rem;
