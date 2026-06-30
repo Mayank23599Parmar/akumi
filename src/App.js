@@ -120,6 +120,33 @@ const Icons = {
       <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>
     </svg>
   ),
+  Facebook: ({ size = 18 }) => (
+    <svg width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+    </svg>
+  ),
+  Twitter: ({ size = 18 }) => (
+    <svg width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+    </svg>
+  ),
+  Linkedin: ({ size = 18 }) => (
+    <svg width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+      <rect width="4" height="12" x="2" y="9"/>
+      <circle cx="4" cy="4" r="2"/>
+    </svg>
+  ),
+  Tumblr: ({ size = 18 }) => (
+    <svg width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+      <path d="M14.5 15h5v4c-1.5 1-3.5 1-5 1-3.5 0-5.5-2.5-5.5-6V9H6V6h3V2h3v4h4v3h-4v4c0 1.5.5 2 2 2h2.5z"/>
+    </svg>
+  ),
+  Shopify: ({ size = 24 }) => (
+    <svg width={size} height={size} viewBox="0 0 32 32" fill="currentColor">
+      <path d="M26.4 8.3c-.3-.2-1.2-.6-1.8-.7l-4.4-1.2c-.3-.1-.7-.1-1 0L10.3 9.4c-.6.2-.9.8-.7 1.4L12.5 22l8.8 8.4c.5.5 1.3.5 1.8.1l6.1-5.4c.4-.4.6-1 .4-1.6l-3.2-15.2zm-12 1.9l6.5-2 2.6.7 1.9 9.3-9.5-2-1.5-6zM8.8 10.9L7.5 24.5c0 .5.3 1 .8 1.1l3.5 1.1-.9-9-2.1-6.8z"/>
+    </svg>
+  )
 };
 
 /* ─────────────────────────────
@@ -748,6 +775,10 @@ const Footer = () => (
           <div className="ak-footer-socials">
             {[
               { label: 'Instagram', href: 'https://www.instagram.com/akumiclothing', icon: <Icons.Instagram size={16} /> },
+              { label: 'Tumblr', href: 'https://akumi.tumblr.com/', icon: <Icons.Tumblr size={16} /> },
+              { label: 'X', href: 'https://x.com/akumi', icon: <Icons.Twitter size={16} /> },
+              { label: 'Facebook', href: 'https://www.facebook.com/akumi', icon: <Icons.Facebook size={16} /> },
+              { label: 'LinkedIn', href: 'https://www.linkedin.com/in/akumi/', icon: <Icons.Linkedin size={16} /> },
             ].map(({ label, href, icon }) => (
               <a key={label} href={href} className="ak-footer-social-btn" aria-label={label} target="_blank" rel="noopener noreferrer">
                 {icon}
@@ -772,6 +803,10 @@ const Footer = () => (
       </div>
       <div className="ak-footer-bottom">
         <p>© 2026 Akumi Clothing. All rights reserved.</p>
+        <div className="ak-footer-payments" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', opacity: 1 }}>
+          <Icons.Shopify size={16} /> <span style={{ fontSize: '0.75rem', marginRight: '0.5rem', fontWeight: 500 }}>Secure checkout with Shopify</span>
+          <img src="/images/payme.svg" alt="Payment Methods" style={{ height: '20px', marginLeft: '0.5rem' }} />
+        </div>
         <p>Privacy Policy · Terms of Service · Accessibility</p>
       </div>
     </div>

@@ -116,8 +116,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex; align-items: center; justify-content: space-between;
   height: 70px; max-width: 1320px; margin: 0 auto; padding: 0 2rem;
 }
-.ak-logo { mix-blend-mode: multiply; display: block; }
-.ak-logo img { height: 40px; width: auto; object-fit: contain; }
+.ak-logo { display: block; }
+.ak-logo img { height: 40px; width: auto; object-fit: contain; mix-blend-mode: darken; }
 .ak-nav-links {
   display: flex; align-items: center; gap: 2.5rem; list-style: none;
 }
@@ -712,7 +712,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    NEWSLETTER
 ══════════════════════════ */
 .ak-newsletter {
-  padding: 5rem 0; background: var(--ak-charcoal);
+  padding: 5rem 0; background: #1E2522;
   position: relative; overflow: hidden;
 }
 .ak-newsletter::before {
@@ -762,7 +762,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ══════════════════════════
    FOOTER
 ══════════════════════════ */
-.ak-footer { background: var(--ak-black); color: rgba(255,255,255,0.5); padding: 5rem 0 2rem; }
+.ak-footer { background: #1E2522; color: rgba(255,255,255,0.5); padding: 5rem 0 2rem; }
 .ak-footer-top {
   display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr;
   gap: 4rem; padding-bottom: 4rem;
