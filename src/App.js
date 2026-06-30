@@ -751,7 +751,12 @@ const QuickAddModal = ({ product, onClose }) => {
             </div>
 
             <button className="ak-qa-add-btn">
-              Add to Cart — {product.price}
+              <span className="ak-qa-add-btn-main">
+                ADD TO CART - {product.comparePrice && <span className="ak-qa-add-btn-compare">{product.comparePrice}</span>} {product.price}
+              </span>
+              <span className="ak-qa-add-btn-stock">
+                <span className="ak-qa-pulse-dot"></span> In-Stock: Ready To Ship
+              </span>
             </button>
             <img src="/images/payme.svg" alt="Payment Methods" style={{ height: '20px', marginLeft: '0.5rem' }} />
           </div>
