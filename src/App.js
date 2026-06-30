@@ -171,16 +171,16 @@ function useFadeUp() {
    ANNOUNCEMENT BAR
 ═══════════════════════════════════════ */
 const announceItems = [
-  <><em>Free Shipping</em> on all orders over $75</>,
+  <><em>Free Shipping</em>{" on all orders over $75"}</>,
   <>100% Recycled Cotton — made differently</>,
-  <><em>New Drop:</em> Summer Essentials now live</>,
+  <><em>New Drop:</em>{" Summer Essentials now live"}</>,
   <>California-Inspired Premium Activewear</>,
-  <>Stay Active in Style. <em>Shop Akumi</em></>,
-  <><em>Free Shipping</em> on all orders over $75</>,
+  <>{"Stay Active in Style. "}<em>Shop Akumi</em></>,
+  <><em>Free Shipping</em>{" on all orders over $75"}</>,
   <>100% Recycled Cotton — made differently</>,
-  <><em>New Drop:</em> Summer Essentials now live</>,
+  <><em>New Drop:</em>{" Summer Essentials now live"}</>,
   <>California-Inspired Premium Activewear</>,
-  <>Stay Active in Style. <em>Shop Akumi</em></>,
+  <>{"Stay Active in Style. "}<em>Shop Akumi</em></>,
 ];
 
 const AnnouncementBar = () => (

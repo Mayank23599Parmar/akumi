@@ -66,13 +66,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    ANNOUNCEMENT BAR
 ══════════════════════════ */
 .ak-announce {
-  background: var(--ak-charcoal);
+  background: #1E2522;
   color: rgba(255,255,255,0.75);
   padding: 0.65rem 0;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+  font-weight: 500;
   overflow: hidden;
   white-space: nowrap;
   position: relative;
@@ -84,19 +85,19 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   width: 60px; z-index: 1;
   pointer-events: none;
 }
-.ak-announce::before { left: 0; background: linear-gradient(90deg, var(--ak-charcoal), transparent); }
-.ak-announce::after  { right: 0; background: linear-gradient(-90deg, var(--ak-charcoal), transparent); }
+.ak-announce::before { left: 0; background: linear-gradient(90deg, #1E2522, transparent); }
+.ak-announce::after  { right: 0; background: linear-gradient(-90deg, #1E2522, transparent); }
 
 .ak-announce-track {
   display: inline-flex;
   animation: marquee-slow 30s linear infinite;
   width: max-content;
 }
-.ak-announce-track span { padding: 0 2rem; display: inline-flex; align-items: center; }
+.ak-announce-track span { padding: 0 2rem; display: inline-block; vertical-align: middle; }
 .ak-sep { opacity: 0.3; padding: 0 0.3rem; }
 .ak-announce em {
-  color: var(--ak-amber);
-  font-style: normal; font-weight: 800;
+  color: var(--ak-white);
+  font-style: normal; font-weight: 600;
 }
 @keyframes marquee-slow { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
@@ -122,7 +123,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex; align-items: center; gap: 2.5rem; list-style: none;
 }
 .ak-nav-links a {
-  font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+  font-size: 0.75rem; letter-spacing: 0.04em; text-transform: capitalize;
   font-weight: 700; color: var(--ak-charcoal-2);
   position: relative; transition: color var(--t-fast);
 }
@@ -158,7 +159,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .ak-mobile-nav a {
   padding: 0.8rem 0;
   font-size: 0.85rem; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase;
+  letter-spacing: 0.04em; text-transform: capitalize;
   color: var(--ak-charcoal-2);
   border-bottom: 1px solid var(--ak-divider);
 }
@@ -203,14 +204,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .ak-pill {
   display: inline-flex; align-items: center; gap: 0.4rem;
   padding: 0.38rem 1rem; border-radius: 100px;
-  font-size: 0.65rem; letter-spacing: 0.09em;
-  text-transform: uppercase; font-weight: 700;
+  font-size: 0.65rem; letter-spacing: 0.04em;
+  text-transform: capitalize; font-weight: 700;
   transition: transform var(--t-fast);
 }
 .ak-pill:hover { transform: translateY(-2px); }
-.ak-pill-amber { background: rgba(245,166,35,0.1); color: var(--ak-amber-dark); border: 1px solid rgba(245,166,35,0.3); }
-.ak-pill-lime  { background: rgba(139,195,74,0.1); color: #437000; border: 1px solid rgba(139,195,74,0.3); }
-.ak-pill-cyan  { background: rgba(77,208,225,0.1); color: var(--ak-cyan-dark); border: 1px solid rgba(77,208,225,0.3); }
+.ak-pill-amber { background: #E8EFE9; color: #2D4A36; border: 1px solid #D1E0D4; } /* Recycled Cotton - Earthy Green for sustainability */
+.ak-pill-cyan  { background: #F5F0E6; color: #5A4A35; border: 1px solid #EBE3D5; } /* California Made - Warm Sand for local lifestyle */
+.ak-pill-lime  { background: #1E2522; color: var(--ak-cream); border: 1px solid #2B3531; } /* Premium Essentials - Earthy Charcoal for luxury/quality */
 .ak-hero-h1 {
   font-family: var(--font-display);
   font-size: clamp(3rem, 5.2vw, 5.5rem);
@@ -251,7 +252,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: var(--ak-charcoal); line-height: 1; margin-bottom: 0.3rem;
 }
 .ak-stat-label {
-  font-size: 0.67rem; letter-spacing: 0.1em; text-transform: uppercase;
+  font-size: 0.67rem; letter-spacing: 0.04em; text-transform: capitalize;
   font-weight: 600; color: var(--ak-muted);
 }
 
@@ -277,8 +278,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .ak-trust-item:hover { background: rgba(255,255,255,0.6); }
 .ak-trust-icon { flex-shrink: 0; color: var(--ak-charcoal); }
 .ak-trust-label {
-  display: block; font-size: 0.72rem; letter-spacing: 0.08em;
-  text-transform: uppercase; font-weight: 700; color: var(--ak-charcoal-2);
+  display: block; font-size: 0.72rem; letter-spacing: 0.04em;
+  text-transform: capitalize; font-weight: 700; color: var(--ak-charcoal-2);
   margin-bottom: 0.1rem;
 }
 .ak-trust-sub {
@@ -304,7 +305,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .ak-ticker-item {
   display: inline-flex; align-items: center; gap: 2rem; padding: 0 2rem;
   font-family: var(--font-display);
-  font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase;
+  font-size: 0.9rem; letter-spacing: 0.04em; text-transform: capitalize;
   font-weight: 500; color: var(--ak-off-white);
 }
 .ak-ticker-item .accent {
