@@ -1095,7 +1095,7 @@ const Footer = () => (
       <div className="ak-footer-bottom">
         <p>© 2026 Akumi Clothing. All rights reserved.</p>
         <div className="ak-footer-payments" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', opacity: 1 }}>
-          <Icons.Shopify size={16} /> <span style={{ fontSize: '0.75rem', marginRight: '0.5rem', fontWeight: 500 }}>Secure checkout with Shopify</span>
+          <Icons.Shopify size={16} />
           <img src="https://cdn.shopify.com/s/files/1/0994/3882/1657/files/payme.svg?v=1782843867" alt="Payment Methods" style={{ height: '20px', marginLeft: '0.5rem' }} />
         </div>
         <p>Privacy Policy · Terms of Service · Accessibility</p>
