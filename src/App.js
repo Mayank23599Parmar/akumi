@@ -23,10 +23,10 @@ const U = {
   hero_man:      'https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=1400&q=85&auto=format&fit=crop',
   hero_woman:    'https://images.unsplash.com/photo-1594381898411-846e7d193883?w=1400&q=85&auto=format&fit=crop',
   man_running:   'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&q=80&auto=format&fit=crop',
-  man_lifestyle: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80&auto=format&fit=crop',
+  man_lifestyle: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80&auto=format&fit=crop',
   woman_sport:   'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=80&auto=format&fit=crop',
   woman_casual:  'https://images.unsplash.com/photo-1564218419776-9e1c9d2afcf4?w=800&q=80&auto=format&fit=crop',
-  cotton_field:  'https://images.unsplash.com/photo-1609101014614-91e13bf9e938?w=1400&q=85&auto=format&fit=crop',
+  cotton_field:  'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=1400&q=85&auto=format&fit=crop',
   ocean_wave:    'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1400&q=85&auto=format&fit=crop',
   california:    'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1400&q=85&auto=format&fit=crop',
   gym_lifestyle: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80&auto=format&fit=crop',
@@ -353,59 +353,6 @@ const StoryIntro = () => {
   );
 };
 
-/* ═══════════════════════════════════════
-   PRODUCT SHOWCASE — real brand images
-   Uses actual Akumi product shots as a story strip
-═══════════════════════════════════════ */
-const BrandStrip = () => {
-  const ref = useFadeUp();
-  return (
-    <section className="ak-brand-strip fade-up" ref={ref} aria-label="Brand product showcase">
-      <div className="ak-brand-strip-inner">
-        <div className="ak-strip-item ak-strip-tall">
-          <img src={BRAND.set_front} alt="Akumi tee and shorts set — front view" loading="lazy" />
-          <div className="ak-strip-overlay">
-            <span className="ak-strip-tag">The Essential Set</span>
-          </div>
-        </div>
-        <div className="ak-strip-col">
-          <div className="ak-strip-item">
-            <img src={BRAND.tee_front} alt="Akumi logo tee — charcoal" loading="lazy" />
-            <div className="ak-strip-overlay">
-              <span className="ak-strip-tag">Logo Tee</span>
-            </div>
-          </div>
-          <div className="ak-strip-item">
-            <img src={BRAND.jogger_pocket} alt="Akumi jogger pocket detail" loading="lazy" />
-            <div className="ak-strip-overlay">
-              <span className="ak-strip-tag">Jogger Detail</span>
-            </div>
-          </div>
-        </div>
-        <div className="ak-strip-col">
-          <div className="ak-strip-item">
-            <img src={BRAND.tee_white} alt="Akumi white logo tee" loading="lazy" />
-            <div className="ak-strip-overlay">
-              <span className="ak-strip-tag">White Essential Tee</span>
-            </div>
-          </div>
-          <div className="ak-strip-item">
-            <img src={BRAND.tee_tag} alt="Akumi tee neck label — Designed in California" loading="lazy" />
-            <div className="ak-strip-overlay">
-              <span className="ak-strip-tag">Craftsmanship Detail</span>
-            </div>
-          </div>
-        </div>
-        <div className="ak-strip-item ak-strip-tall">
-          <img src={BRAND.set_back} alt="Akumi tee and shorts — back logo view" loading="lazy" />
-          <div className="ak-strip-overlay">
-            <span className="ak-strip-tag">Back Logo Set</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
 
 /* ═══════════════════════════════════════
    FEATURED PRODUCTS — brand product images
@@ -856,11 +803,10 @@ export default function App() {
         <TrustBar />
         <Ticker />
         <StoryIntro />
-        <BrandStrip />
+        <Collections />
         <FeaturedProducts />
         <SplitStory />
         <Values />
-        <Collections />
         <Reviews />
         <SocialProofBanner />
         <InstaGrid />

@@ -19,9 +19,6 @@
   --ak-lime:        #8BC34A;
   --ak-cyan:        #4DD0E1;
   --ak-cyan-dark:   #007C8A;
-  --ak-gradient:    linear-gradient(135deg, #F5A623 0%, #8BC34A 50%, #4DD0E1 100%);
-  --ak-gradient-h:  linear-gradient(90deg, #F5A623 0%, #8BC34A 50%, #4DD0E1 100%);
-  --ak-gradient-text: linear-gradient(135deg, #F5A623 0%, #8BC34A 50%, #4DD0E1 100%);
   --font-body:      'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display:   'Outfit', -apple-system, sans-serif;
   --ease:           cubic-bezier(0.4, 0, 0.2, 1);
@@ -49,10 +46,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ── Utilities ── */
 .container { max-width: 1320px; margin: 0 auto; padding: 0 2rem; }
 .gradient-text {
-  background: var(--ak-gradient-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--ak-charcoal);
 }
 .ak-fill-img {
   width: 100%; height: 100%;
@@ -101,10 +95,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .ak-announce-track span { padding: 0 2rem; display: inline-flex; align-items: center; }
 .ak-sep { opacity: 0.3; padding: 0 0.3rem; }
 .ak-announce em {
-  background: var(--ak-gradient-h);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--ak-amber);
   font-style: normal; font-weight: 800;
 }
 @keyframes marquee-slow { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -125,6 +116,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex; align-items: center; justify-content: space-between;
   height: 70px; max-width: 1320px; margin: 0 auto; padding: 0 2rem;
 }
+.ak-logo { mix-blend-mode: multiply; display: block; }
 .ak-logo img { height: 40px; width: auto; object-fit: contain; }
 .ak-nav-links {
   display: flex; align-items: center; gap: 2.5rem; list-style: none;
@@ -136,7 +128,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .ak-nav-links a::after {
   content: ''; position: absolute; bottom: -4px; left: 0;
-  width: 0; height: 2px; background: var(--ak-gradient-h);
+  width: 0; height: 2px; background: var(--ak-charcoal);
   transition: width var(--t-base) var(--ease);
 }
 .ak-nav-links a:hover { color: var(--ak-charcoal); }
@@ -205,7 +197,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .ak-hero-eyebrow::before {
   content: ''; width: 28px; height: 2px;
-  background: var(--ak-gradient-h); flex-shrink: 0;
+  background: var(--ak-charcoal); flex-shrink: 0;
 }
 .ak-hero-pills { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.8rem; }
 .ak-pill {
@@ -303,7 +295,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .ak-ticker::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: var(--ak-gradient-h);
+  background: var(--ak-charcoal-2);
 }
 .ak-ticker-track {
   display: flex; animation: marquee 22s linear infinite; white-space: nowrap;
@@ -316,10 +308,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 700; color: rgba(255,255,255,0.4);
 }
 .ak-ticker-item .accent {
-  background: var(--ak-gradient-h);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--ak-amber);
 }
 .ak-ticker-item .dot {
   width: 4px; height: 4px; border-radius: 50%;
@@ -331,7 +320,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    STORY INTRO
 ══════════════════════════ */
 .ak-story {
-  padding: 8rem 2rem;
+  padding: 4rem 2rem;
   max-width: 900px; margin: 0 auto; text-align: center;
 }
 .ak-section-tag {
@@ -340,7 +329,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 800; color: var(--ak-muted); margin-bottom: 2rem;
 }
 .ak-section-tag::before, .ak-section-tag::after {
-  content: ''; width: 36px; height: 1.5px; background: var(--ak-gradient-h);
+  content: ''; width: 36px; height: 1.5px; background: var(--ak-charcoal-3);
 }
 .ak-story-quote {
   font-family: var(--font-display);
@@ -410,7 +399,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ══════════════════════════
    FEATURED PRODUCTS
 ══════════════════════════ */
-.ak-products { padding: 6rem 0 7rem; background: var(--ak-off-white); }
+.ak-products { padding: 4rem 0 5rem; background: var(--ak-off-white); }
 .ak-section-header {
   display: flex; align-items: flex-end; justify-content: space-between;
   margin-bottom: 3rem; gap: 2rem;
@@ -501,7 +490,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .ak-split-content {
   display: flex; flex-direction: column; justify-content: center;
-  padding: 6rem 5rem; background: var(--ak-charcoal); color: #fff;
+  padding: 4rem 4rem; background: var(--ak-charcoal); color: #fff;
 }
 .ak-split-tag {
   display: flex; align-items: center; gap: 0.7rem;
@@ -510,7 +499,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .ak-split-tag::before {
   content: ''; width: 28px; height: 1.5px;
-  background: var(--ak-gradient-h);
+  background: rgba(255,255,255,0.5);
 }
 .ak-split-h2 {
   font-family: var(--font-display);
@@ -524,7 +513,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .ak-btn-gradient {
   display: inline-flex; align-items: center; gap: 0.6rem;
-  padding: 0.95rem 2rem; background: var(--ak-gradient-h);
+  padding: 0.95rem 2rem; background: #fff;
   color: var(--ak-charcoal); font-size: 0.72rem;
   letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800;
   align-self: flex-start;
@@ -535,7 +524,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ══════════════════════════
    VALUES
 ══════════════════════════ */
-.ak-values { padding: 7rem 0; background: var(--ak-white); }
+.ak-values { padding: 5rem 0; background: var(--ak-white); }
 .ak-values .ak-section-title { margin-top: 0.5rem; }
 .ak-values-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
@@ -571,7 +560,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ══════════════════════════
    COLLECTIONS
 ══════════════════════════ */
-.ak-collections { padding: 6rem 0; background: var(--ak-off-white); }
+.ak-collections { padding: 4rem 0; background: var(--ak-off-white); }
 .ak-col-grid {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 1.5rem; margin-top: 3rem;
@@ -609,7 +598,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ══════════════════════════
    REVIEWS — dual marquee
 ══════════════════════════ */
-.ak-reviews { padding: 7rem 0; background: var(--ak-white); overflow: hidden; }
+.ak-reviews { padding: 5rem 0; background: var(--ak-white); overflow: hidden; }
 .ak-reviews-header {
   text-align: center; padding: 0 2rem; margin-bottom: 4rem;
 }
@@ -723,18 +712,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    NEWSLETTER
 ══════════════════════════ */
 .ak-newsletter {
-  padding: 7rem 0; background: var(--ak-charcoal);
+  padding: 5rem 0; background: var(--ak-charcoal);
   position: relative; overflow: hidden;
 }
 .ak-newsletter::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  background: var(--ak-gradient-h);
+  background: var(--ak-charcoal-2);
 }
 .ak-newsletter-glow {
-  position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
-  width: 700px; height: 700px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(245,166,35,0.07) 0%, transparent 70%);
-  pointer-events: none;
+  display: none;
 }
 .ak-nl-h2 {
   font-family: var(--font-display);
@@ -760,7 +746,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .ak-newsletter-btn {
   display: inline-flex; align-items: center; gap: 0.5rem;
   padding: 1.1rem 1.8rem;
-  background: var(--ak-gradient-h); color: var(--ak-charcoal);
+  background: #fff; color: var(--ak-charcoal);
   font-size: 0.72rem; letter-spacing: 0.14em;
   text-transform: uppercase; font-weight: 800;
   white-space: nowrap; transition: opacity var(--t-fast);
@@ -784,7 +770,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-bottom: 2rem;
 }
 .ak-footer-logo-img {
-  height: 36px; width: auto; filter: brightness(0) invert(1);
+  height: 36px; width: auto; filter: grayscale(1) invert(1); mix-blend-mode: screen;
   margin-bottom: 1.2rem; object-fit: contain;
 }
 .ak-footer-tagline {
