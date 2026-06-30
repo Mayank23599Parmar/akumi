@@ -2689,15 +2689,27 @@ button {
 }
 
 @media (max-width: 760px) {
+  .ak-qa-modal {
+    max-height: 95vh;
+    overflow-y: auto;
+  }
+
+  .ak-qa-img {
+    object-fit: contain;
+  }
+
   .ak-qa-layout {
     flex-direction: column;
     min-height: unset;
+    height: auto;
   }
 
   .ak-qa-left {
     flex: none;
-    height: 55vw;
-    min-height: 260px;
+    height: auto;
+    aspect-ratio: 1;
+    max-height: 50vh;
+    min-height: unset;
   }
 
   .ak-qa-img-wrap {
@@ -2707,6 +2719,7 @@ button {
 
   .ak-qa-right {
     padding: 1.5rem;
+    overflow-y: visible;
   }
 
   .ak-qa-title {
