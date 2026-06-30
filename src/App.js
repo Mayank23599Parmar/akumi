@@ -633,8 +633,17 @@ const QuickAddModal = ({ product, onClose }) => {
 
   if (!product) return null;
 
-  // The 6 images
-  const modalImages = [
+  const isWomen = product.cat && product.cat.toLowerCase().includes("women");
+
+  // Show gender-appropriate images
+  const modalImages = isWomen ? [
+    process.env.PUBLIC_URL + '/images/products/p1-f-front.png',
+    process.env.PUBLIC_URL + '/images/products/p1-f-back.png',
+    process.env.PUBLIC_URL + '/images/products/p2-f-front.png',
+    process.env.PUBLIC_URL + '/images/products/p2-f-back.png',
+    process.env.PUBLIC_URL + '/images/products/p3-f-front.png',
+    process.env.PUBLIC_URL + '/images/products/p3-f-back.png',
+  ] : [
     process.env.PUBLIC_URL + '/images/products/p1-m-front.png',
     process.env.PUBLIC_URL + '/images/products/p1-m-back.png',
     process.env.PUBLIC_URL + '/images/products/p2-m-front.png',
@@ -643,10 +652,15 @@ const QuickAddModal = ({ product, onClose }) => {
     process.env.PUBLIC_URL + '/images/products/p3-m-back.png',
   ];
 
-  const colors = [
+  // Gender-appropriate color variants
+  const colors = isWomen ? [
+    { name: 'Purple', hex: '#7B5EA7' },
+    { name: 'Red',    hex: '#C0392B' },
+    { name: 'White',  hex: '#F5F4F1' },
+  ] : [
     { name: 'White', hex: '#F5F4F1' },
     { name: 'Black', hex: '#1A1A1A' },
-    { name: 'Blue', hex: '#3B5E8C' },
+    { name: 'Blue',  hex: '#3B5E8C' },
   ];
 
   const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
@@ -685,14 +699,15 @@ const QuickAddModal = ({ product, onClose }) => {
           {/* RIGHT: product details */}
           <div className="ak-qa-right">
             <p className="ak-qa-meta">{product.cat}</p>
+            <div className="ak-qa-stars-row">
+              <StarRating rating={product.rating} count={product.reviews} />
+            </div>
             <h2 className="ak-qa-title">{product.name}</h2>
             <div className="ak-qa-prices">
               <span className="ak-qa-price">{product.price}</span>
               {product.comparePrice && <span className="ak-qa-compare">{product.comparePrice}</span>}
             </div>
-            <div className="ak-qa-stars-row">
-              <StarRating rating={product.rating} count={product.reviews} />
-            </div>
+
 
             <div className="ak-qa-divider" />
 
@@ -788,14 +803,14 @@ const BrandStatement = () => {
         <div className="ak-brand-stmt-left">
           <div className="ak-brand-stmt-img-grid">
             <div className="ak-bsi-tall">
-              <img src={BRAND.set_front} alt="Akumi set flatlay" loading="lazy" className="ak-fill-img" />
+              <img src={process.env.PUBLIC_URL + '/images/built-different/bd-1.jpeg'} alt="Akumi full outfit" loading="lazy" className="ak-fill-img" />
             </div>
             <div className="ak-bsi-stack">
               <div className="ak-bsi-sm">
-                <img src={BRAND.tee_front} alt="Akumi logo tee detail" loading="lazy" className="ak-fill-img" />
+                <img src={process.env.PUBLIC_URL + '/images/built-different/bd-2.jpeg'} alt="Akumi tee detail" loading="lazy" className="ak-fill-img" />
               </div>
               <div className="ak-bsi-sm">
-                <img src={BRAND.jogger_pocket} alt="Akumi jogger pocket detail" loading="lazy" className="ak-fill-img" />
+                <img src={process.env.PUBLIC_URL + '/images/built-different/bd-3.jpeg'} alt="Akumi shorts detail" loading="lazy" className="ak-fill-img" />
               </div>
             </div>
           </div>
@@ -942,13 +957,13 @@ const Reviews = () => (
 ═══════════════════════════════════════ */
 const igPosts = [
   { src: BRAND.tee_front, alt: 'Akumi logo tee charcoal' },
-  { src: U.man_running, alt: 'Man active outdoors in activewear' },
+  { src: process.env.PUBLIC_URL + '/images/built-different/bd-1.jpeg', alt: 'Akumi full outfit', pos: 'top' },
   { src: BRAND.set_front, alt: 'Akumi tee and shorts flatlay' },
   { src: BRAND.jogger_pocket, alt: 'Akumi jogger pocket detail' },
   { src: U.woman_sport, alt: 'Woman in activewear training' },
   { src: BRAND.set_back, alt: 'Akumi back logo set' },
-  { src: BRAND.tee_white, alt: 'Akumi white logo tee' },
-  { src: U.gym_lifestyle, alt: 'Athlete training in gym' },
+  { src: process.env.PUBLIC_URL + '/images/products/p1-m-front.png', alt: 'Akumi men essential tee', pos: 'top' },
+  { src: process.env.PUBLIC_URL + '/images/products/p1-f-front.png', alt: 'Akumi women crop tee', pos: 'top' },
   { src: BRAND.detail_hem, alt: 'Akumi hem stitch detail' },
   { src: BRAND.tee_tag, alt: 'Akumi Designed in California label' },
 ];
@@ -969,7 +984,7 @@ const InstaGrid = () => (
       </a>
     </div>
     <div className="ak-insta-grid">
-      {igPosts.map(({ src, alt }, i) => (
+      {igPosts.map(({ src, alt, pos }, i) => (
         <a
           key={i}
           href="https://www.instagram.com/akumiclothing"
@@ -978,7 +993,7 @@ const InstaGrid = () => (
           rel="noopener noreferrer"
           aria-label={`View on Instagram: ${alt}`}
         >
-          <img src={src} alt={alt} loading="lazy" />
+          <img src={src} alt={alt} style={pos ? { objectPosition: pos } : undefined} loading="lazy" />
           <div className="ak-insta-hover" aria-hidden="true">
             <Icons.Instagram size={26} />
           </div>
