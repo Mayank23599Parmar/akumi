@@ -290,12 +290,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    TICKER MARQUEE
 ══════════════════════════ */
 .ak-ticker {
-  background: var(--ak-charcoal); overflow: hidden; padding: 1.1rem 0;
+  background: #1E2522; /* Earthy Olive Green to match new footer and brand narrative */
+  overflow: hidden; padding: 1.25rem 0;
   position: relative;
-}
-.ak-ticker::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: var(--ak-charcoal-2);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 .ak-ticker-track {
   display: flex; animation: marquee 22s linear infinite; white-space: nowrap;
@@ -303,16 +302,19 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .ak-ticker-track:hover { animation-play-state: paused; }
 .ak-ticker-item {
-  display: inline-flex; align-items: center; gap: 1.5rem; padding: 0 2rem;
-  font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
-  font-weight: 700; color: rgba(255,255,255,0.4);
+  display: inline-flex; align-items: center; gap: 2rem; padding: 0 2rem;
+  font-family: var(--font-display);
+  font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase;
+  font-weight: 500; color: var(--ak-off-white);
 }
 .ak-ticker-item .accent {
-  color: var(--ak-amber);
+  /* Removing the harsh amber. Using a subtle opacity shift for premium feel */
+  color: rgba(255, 255, 255, 0.6);
 }
 .ak-ticker-item .dot {
   width: 4px; height: 4px; border-radius: 50%;
-  background: rgba(255,255,255,0.18); flex-shrink: 0;
+  background: var(--ak-lime); /* A subtle pop of lime green for the sustainability tie-in */
+  flex-shrink: 0;
 }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
@@ -524,38 +526,38 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ══════════════════════════
    VALUES
 ══════════════════════════ */
-.ak-values { padding: 5rem 0; background: var(--ak-white); }
+.ak-values { padding: 7rem 0; background: var(--ak-white); }
 .ak-values .ak-section-title { margin-top: 0.5rem; }
 .ak-values-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 0; border: 1px solid var(--ak-divider); margin-top: 3.5rem;
+  gap: 4rem; margin-top: 5rem; border: none;
 }
 .ak-value-card {
-  padding: 3.5rem 3rem; border-right: 1px solid var(--ak-divider);
-  transition: background var(--t-base); position: relative; overflow: hidden;
+  padding: 0; border: none; background: transparent;
+  transition: transform var(--t-base); position: relative;
 }
-.ak-value-card:last-child { border-right: none; }
-.ak-value-card:hover { background: var(--ak-off-white); }
-.ak-value-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  transform: scaleX(0); transform-origin: left;
-  transition: transform var(--t-slow) var(--ease);
-}
-.ak-value-card:nth-child(1)::before { background: var(--ak-amber); }
-.ak-value-card:nth-child(2)::before { background: var(--ak-lime); }
-.ak-value-card:nth-child(3)::before { background: var(--ak-cyan); }
-.ak-value-card:hover::before { transform: scaleX(1); }
+.ak-value-card:hover { background: transparent; transform: translateY(-5px); }
 .ak-value-num {
-  font-family: var(--font-display); font-size: 4.5rem;
-  font-weight: 900; line-height: 1; margin-bottom: 1.5rem;
-  opacity: 0.06; color: var(--ak-charcoal);
+  font-family: var(--font-display); font-size: 0.85rem;
+  font-weight: 600; line-height: 1; margin-bottom: 1.5rem;
+  color: var(--ak-charcoal-3); letter-spacing: 0.15em;
 }
-.ak-value-icon { color: var(--ak-charcoal); margin-bottom: 1.2rem; }
+.ak-value-icon { 
+  color: var(--ak-charcoal); margin-bottom: 1.5rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--ak-off-white);
+  transition: background var(--t-base), color var(--t-base);
+}
+.ak-value-card:hover .ak-value-icon {
+  background: #1E2522; /* Olive Green brand hover */
+  color: var(--ak-white);
+}
 .ak-value-h3 {
-  font-family: var(--font-display); font-size: 1.4rem; font-weight: 700;
-  color: var(--ak-charcoal); margin-bottom: 0.8rem;
+  font-family: var(--font-display); font-size: 1.4rem; font-weight: 500;
+  color: var(--ak-charcoal); margin-bottom: 1rem;
 }
-.ak-value-p { font-size: 0.9rem; line-height: 1.82; color: var(--ak-charcoal-3); }
+.ak-value-p { font-size: 1rem; line-height: 1.7; color: var(--ak-charcoal-3); }
 
 /* ══════════════════════════
    COLLECTIONS
