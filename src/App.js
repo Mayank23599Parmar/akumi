@@ -6,29 +6,29 @@ import './index.css';
 /* ─────────────────────────────
    BRAND ASSETS
 ───────────────────────────── */
-const LOGO = process.env.PUBLIC_URL + '/images/logo/logo.png';
+const LOGO = 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/logo.png?v=1782843892';
 
 /* Actual Akumi product images from /sections/ */
 const BRAND = {
-  logo_icon: process.env.PUBLIC_URL + '/ig1.jpg',     // pure icon mark
-  detail_hem: process.env.PUBLIC_URL + '/ig2.jpg',    // hem detail dark tee
-  tee_front: process.env.PUBLIC_URL + '/ig3.jpg',    // tee front black
-  jogger_pocket: process.env.PUBLIC_URL + '/ig4.jpg', // jogger pocket detail
-  set_back: process.env.PUBLIC_URL + '/ig5.jpg',    // tee + shorts flatlay back
-  set_front: process.env.PUBLIC_URL + '/ig6.jpg',    // tee + shorts flatlay front
-  tee_tag: process.env.PUBLIC_URL + '/ig7.jpg',    // tee neck label detail
-  tee_white: process.env.PUBLIC_URL + '/ig8.jpg',    // white logo tee
+  logo_icon: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/ig1.jpg?v=1782843850',     // pure icon mark
+  detail_hem: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/ig2.jpg?v=1782843850',    // hem detail dark tee
+  tee_front: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/ig3.jpg?v=1782843851',    // tee front black
+  jogger_pocket: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/ig4.jpg?v=1782843851', // jogger pocket detail
+  set_back: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/ig5.jpg?v=1782843851',    // tee + shorts flatlay back
+  set_front: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/ig6.jpg?v=1782843850',    // tee + shorts flatlay front
+  tee_tag: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/ig7.jpg?v=1782843850',    // tee neck label detail
+  tee_white: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/ig8.jpg?v=1782843850',    // white logo tee
 };
 
-/* Unsplash – free, no key needed, brand-matched lifestyle imagery */
+/* Unsplash & Shopify CDN */
 const U = {
   hero_man: 'https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=1400&q=85&auto=format&fit=crop',
   hero_woman: 'https://images.unsplash.com/photo-1594381898411-846e7d193883?w=1400&q=85&auto=format&fit=crop',
   man_running: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&q=80&auto=format&fit=crop',
-  man_lifestyle: process.env.PUBLIC_URL + '/images/hero/1_amuk.png',
-  woman_sport: process.env.PUBLIC_URL + '/images/hero/2_amuk.png',
+  man_lifestyle: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/1_amuk.png?v=1782843903',
+  woman_sport: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/2_amuk.png?v=1782843903',
   woman_casual: 'https://images.unsplash.com/photo-1564218419776-9e1c9d2afcf4?w=800&q=80&auto=format&fit=crop',
-  cotton_field: process.env.PUBLIC_URL + '/images/sustainability.jpeg',
+  cotton_field: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/sustainability.jpg?v=1782843868',
   ocean_wave: 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1400&q=85&auto=format&fit=crop',
   california: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1400&q=85&auto=format&fit=crop',
   gym_lifestyle: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80&auto=format&fit=crop',
@@ -421,14 +421,18 @@ const StoryIntro = () => {
    FEATURED PRODUCTS — brand product images
 ═══════════════════════════════════════ */
 /* Image helpers */
-const Pm = (n) => ({
-  front: process.env.PUBLIC_URL + `/images/products/p${n}-m-front.png`,
-  back: process.env.PUBLIC_URL + `/images/products/p${n}-m-back.png`,
-});
-const Pf = (n) => ({
-  front: process.env.PUBLIC_URL + `/images/products/p${n}-f-front.png`,
-  back: process.env.PUBLIC_URL + `/images/products/p${n}-f-back.png`,
-});
+const P_M = {
+  1: { front: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/p1-m-front.png?v=1782843901', back: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/p1-m-back.png?v=1782843901' },
+  2: { front: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/p2-m-front.png?v=1782843899', back: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/p2-m-back.png?v=1782843899' },
+  3: { front: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/p3-m-front.png?v=1782843899', back: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/p3-m-back.png?v=1782843899' },
+};
+const P_F = {
+  1: { front: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/p1-f-front.png?v=1782843885', back: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/p1-f-back.png?v=1782843897' },
+  2: { front: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/p2-f-front.png?v=1782843898', back: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/p2-f-back.png?v=1782843884' },
+  3: { front: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/p3-f-front.png?v=1782843898', back: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/p3-f-back.png?v=1782843897' },
+};
+const Pm = (n) => P_M[n];
+const Pf = (n) => P_F[n];
 
 const maleProducts = [
   {
@@ -635,21 +639,28 @@ const QuickAddModal = ({ product, onClose }) => {
 
   const isWomen = product.cat && product.cat.toLowerCase().includes("women");
 
-  // Show gender-appropriate images
+  const preloadImages = [
+    'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/1_amuk.png?v=1782843903',
+    'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/2_amuk.png?v=1782843903',
+    'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/3_amuk.png?v=1782843903',
+    'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/4_amuk.png?v=1782843903',
+    'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/Buitl_for_everyone.png?v=1782843903'
+  ];
+
   const modalImages = isWomen ? [
-    process.env.PUBLIC_URL + '/images/products/p1-f-front.png',
-    process.env.PUBLIC_URL + '/images/products/p1-f-back.png',
-    process.env.PUBLIC_URL + '/images/products/p2-f-front.png',
-    process.env.PUBLIC_URL + '/images/products/p2-f-back.png',
-    process.env.PUBLIC_URL + '/images/products/p3-f-front.png',
-    process.env.PUBLIC_URL + '/images/products/p3-f-back.png',
+    P_F[1].front,
+    P_F[1].back,
+    P_F[2].front,
+    P_F[2].back,
+    P_F[3].front,
+    P_F[3].back,
   ] : [
-    process.env.PUBLIC_URL + '/images/products/p1-m-front.png',
-    process.env.PUBLIC_URL + '/images/products/p1-m-back.png',
-    process.env.PUBLIC_URL + '/images/products/p2-m-front.png',
-    process.env.PUBLIC_URL + '/images/products/p2-m-back.png',
-    process.env.PUBLIC_URL + '/images/products/p3-m-front.png',
-    process.env.PUBLIC_URL + '/images/products/p3-m-back.png',
+    P_M[1].front,
+    P_M[1].back,
+    P_M[2].front,
+    P_M[2].back,
+    P_M[3].front,
+    P_M[3].back,
   ];
 
   // Gender-appropriate color variants
@@ -758,7 +769,7 @@ const QuickAddModal = ({ product, onClose }) => {
                 <span className="ak-qa-pulse-dot"></span> In-Stock: Ready To Ship
               </span>
             </button>
-            <img src="/images/payme.svg" alt="Payment Methods" style={{ height: '20px', marginLeft: '0.5rem' }} />
+            <img src="https://cdn.shopify.com/s/files/1/0994/3882/1657/files/payme.svg?v=1782843867" alt="Payment Methods" style={{ height: '20px', marginLeft: '0.5rem' }} />
           </div>
         </div>
       </div>
@@ -808,14 +819,14 @@ const BrandStatement = () => {
         <div className="ak-brand-stmt-left">
           <div className="ak-brand-stmt-img-grid">
             <div className="ak-bsi-tall">
-              <img src={process.env.PUBLIC_URL + '/images/built-different/bd-1.jpeg'} alt="Akumi full outfit" loading="lazy" className="ak-fill-img" />
+              <img src="https://cdn.shopify.com/s/files/1/0994/3882/1657/files/bd-1.jpg?v=1782843909" alt="Akumi full outfit" loading="lazy" className="ak-fill-img" />
             </div>
             <div className="ak-bsi-stack">
               <div className="ak-bsi-sm">
-                <img src={process.env.PUBLIC_URL + '/images/built-different/bd-2.jpeg'} alt="Akumi tee detail" loading="lazy" className="ak-fill-img" />
+                <img src="https://cdn.shopify.com/s/files/1/0994/3882/1657/files/bd-2.jpg?v=1782843909" alt="Akumi tee detail" loading="lazy" className="ak-fill-img" />
               </div>
               <div className="ak-bsi-sm">
-                <img src={process.env.PUBLIC_URL + '/images/built-different/bd-3.jpeg'} alt="Akumi shorts detail" loading="lazy" className="ak-fill-img" />
+                <img src="https://cdn.shopify.com/s/files/1/0994/3882/1657/files/bd-3.jpg?v=1782843909" alt="Akumi shorts detail" loading="lazy" className="ak-fill-img" />
               </div>
             </div>
           </div>
@@ -875,7 +886,7 @@ const Collections = () => {
           </div>
         </div>
         <div className="ak-col-card" id="womens-collection" tabIndex="0">
-          <img src={process.env.PUBLIC_URL + '/images/women_line.jpeg'} alt="Woman wearing Akumi activewear" loading="lazy" className="ak-fill-img" />
+          <img src="https://cdn.shopify.com/s/files/1/0994/3882/1657/files/women_line.jpg?v=1782843868" alt="Woman wearing Akumi activewear" loading="lazy" className="ak-fill-img" />
           <div className="ak-col-overlay">
             <p className="ak-col-super">WOMENSWEAR</p>
             <h3 className="ak-col-name" id="women">Effortless style and comfort</h3>
@@ -962,13 +973,13 @@ const Reviews = () => (
 ═══════════════════════════════════════ */
 const igPosts = [
   { src: BRAND.tee_front, alt: 'Akumi logo tee charcoal' },
-  { src: process.env.PUBLIC_URL + '/images/built-different/bd-1.jpeg', alt: 'Akumi full outfit', pos: 'top' },
+  { src: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/bd-1.jpg?v=1782843909', alt: 'Akumi full outfit', pos: 'top' },
   { src: BRAND.set_front, alt: 'Akumi tee and shorts flatlay' },
   { src: BRAND.jogger_pocket, alt: 'Akumi jogger pocket detail' },
   { src: U.woman_sport, alt: 'Woman in activewear training' },
   { src: BRAND.set_back, alt: 'Akumi back logo set' },
-  { src: process.env.PUBLIC_URL + '/images/products/p1-m-front.png', alt: 'Akumi men essential tee', pos: 'top' },
-  { src: process.env.PUBLIC_URL + '/images/products/p1-f-front.png', alt: 'Akumi women crop tee', pos: 'top' },
+  { src: P_M[1].front, alt: 'Akumi men essential tee', pos: 'top' },
+  { src: P_F[1].front, alt: 'Akumi women crop tee', pos: 'top' },
   { src: BRAND.detail_hem, alt: 'Akumi hem stitch detail' },
   { src: BRAND.tee_tag, alt: 'Akumi Designed in California label' },
 ];
@@ -1086,7 +1097,7 @@ const Footer = () => (
         <p>© 2026 Akumi Clothing. All rights reserved.</p>
         <div className="ak-footer-payments" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', opacity: 1 }}>
           <Icons.Shopify size={16} /> <span style={{ fontSize: '0.75rem', marginRight: '0.5rem', fontWeight: 500 }}>Secure checkout with Shopify</span>
-          <img src="/images/payme.svg" alt="Payment Methods" style={{ height: '20px', marginLeft: '0.5rem' }} />
+          <img src="https://cdn.shopify.com/s/files/1/0994/3882/1657/files/payme.svg?v=1782843867" alt="Payment Methods" style={{ height: '20px', marginLeft: '0.5rem' }} />
         </div>
         <p>Privacy Policy · Terms of Service · Accessibility</p>
       </div>
