@@ -245,17 +245,35 @@ const Nav = () => {
 ═══════════════════════════════════════ */
 const Hero = () => {
   const ref = useFadeUp();
+  const [currentImg, setCurrentImg] = useState(0);
+  const images = [
+    '/images/hero/1_amuk.png',
+    '/images/hero/2_amuk.png',
+    '/images/hero/3_amuk.png',
+    '/images/hero/4_amuk.png',
+    '/images/hero/Buitl_for_everyone.png'
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImg((prev) => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="ak-hero" id="hero">
       <div className="ak-hero-left">
-        <img
-          src={U.hero_man}
-          alt="Man wearing Akumi activewear in California"
-          className="ak-hero-img"
-          loading="eager"
-          fetchpriority="high"
-        />
-        <div className="ak-hero-left-overlay" />
+        {images.map((src, idx) => (
+          <img
+            key={src}
+            src={src}
+            alt={`Akumi activewear lifestyle ${idx + 1}`}
+            className={`ak-hero-img ${idx === currentImg ? 'active' : ''}`}
+            loading={idx === 0 ? "eager" : "lazy"}
+            fetchpriority={idx === 0 ? "high" : "auto"}
+          />
+        ))}
       </div>
       <div className="ak-hero-right fade-up" ref={ref}>
         <p className="ak-hero-eyebrow">Summer 2026 · From the Ground Up</p>
