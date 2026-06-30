@@ -265,11 +265,11 @@ const Hero = () => {
   const ref = useFadeUp();
   const [currentImg, setCurrentImg] = useState(0);
   const images = [
-    '/images/hero/1_amuk.png',
-    '/images/hero/2_amuk.png',
-    '/images/hero/3_amuk.png',
-    '/images/hero/4_amuk.png',
-    '/images/hero/Buitl_for_everyone.png'
+    'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/1_amuk.png?v=1782843903',
+    'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/2_amuk.png?v=1782843903',
+    'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/3_amuk.png?v=1782843903',
+    'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/4_amuk.png?v=1782843903',
+    'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/Buitl_for_everyone.png?v=1782843903'
   ];
 
   useEffect(() => {
