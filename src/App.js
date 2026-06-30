@@ -25,7 +25,7 @@ const U = {
   hero_man: 'https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?w=1400&q=85&auto=format&fit=crop',
   hero_woman: 'https://images.unsplash.com/photo-1594381898411-846e7d193883?w=1400&q=85&auto=format&fit=crop',
   man_running: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&q=80&auto=format&fit=crop',
-  man_lifestyle: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/1_amuk.png?v=1782843903',
+  man_lifestyle: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/Buitl_for_everyone.png?v=1782843903',
   woman_sport: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/2_amuk.png?v=1782843903',
   woman_casual: 'https://images.unsplash.com/photo-1564218419776-9e1c9d2afcf4?w=800&q=80&auto=format&fit=crop',
   cotton_field: 'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/sustainability.jpg?v=1782843868',
@@ -268,8 +268,7 @@ const Hero = () => {
     'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/1_amuk.png?v=1782843903',
     'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/2_amuk.png?v=1782843903',
     'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/3_amuk.png?v=1782843903',
-    'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/4_amuk.png?v=1782843903',
-    'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/Buitl_for_everyone.png?v=1782843903'
+    'https://cdn.shopify.com/s/files/1/0994/3882/1657/files/4_amuk.png?v=1782843903'
   ];
 
   useEffect(() => {
@@ -666,12 +665,12 @@ const QuickAddModal = ({ product, onClose }) => {
   // Gender-appropriate color variants
   const colors = isWomen ? [
     { name: 'Purple', hex: '#7B5EA7' },
-    { name: 'Red',    hex: '#C0392B' },
-    { name: 'White',  hex: '#F5F4F1' },
+    { name: 'Red', hex: '#C0392B' },
+    { name: 'White', hex: '#F5F4F1' },
   ] : [
     { name: 'White', hex: '#F5F4F1' },
     { name: 'Black', hex: '#1A1A1A' },
-    { name: 'Blue',  hex: '#3B5E8C' },
+    { name: 'Blue', hex: '#3B5E8C' },
   ];
 
   const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
